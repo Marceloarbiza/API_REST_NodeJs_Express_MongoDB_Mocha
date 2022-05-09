@@ -22,7 +22,7 @@ describe('GET /api/stores', () => {
     it('should return 200 OK', (done) => {
         request(app)
             .get('/api/stores')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .expect(200, done);
     });
     // Test the root path error
@@ -41,14 +41,14 @@ describe('GET /api/stores', () => {
     it('should return json', (done) => {
         request(app)
             .get('/api/stores')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .expect('Content-Type', /json/, done);
     });
     // test array response content and length
     it('should return an array', (done) => {
         request(app)
             .get('/api/stores')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             // reponse length
             .expect((res) => {
                 expect(res.body).toBeArray();
@@ -60,7 +60,7 @@ describe('GET /api/stores', () => {
     it('should return an object with pagination', (done) => {
         request(app)
             .get('/api/stores')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .expect((res) => {
                 expect(res.body).toBeObject();
                 expect(res.body).toHaveProperty('data');
@@ -75,7 +75,7 @@ describe('GET /api/stores', () => {
     it('should return an object with pagination', (done) => {
         request(app)
             .get('/api/stores?limit=3&page=2')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .expect((res) => {
                 expect(res.body).toBeObject();
                 expect(res.body).toHaveProperty('data');
@@ -96,7 +96,7 @@ describe('GET /api/stores', () => {
     it('should return an array of objects', (done) => {
         request(app)
             .get('/api/stores')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .expect((res) => {
                 expect(res.body[0]).toBeObject();
                 expect(res.body[0]).toHaveProperty('name');
@@ -122,7 +122,7 @@ describe('POST /api/posts', () => {
     it('should return 200 Created', (done) => {
         request(app)
             .post('/api/posts')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .send({
                 name: 'test1',
                 cuit: '20-12345678-9',
@@ -137,7 +137,7 @@ describe('POST /api/posts', () => {
     it('should return json', (done) => {
         request(app)
             .post('/api/posts')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .send({
                 name: 'test2',
                 cuit: '20-12345678-9',
@@ -152,7 +152,7 @@ describe('POST /api/posts', () => {
     it('should return 500 Not Found', (done) => {
         request(app)
             .post('/api/posts')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .send({
                 name: '',
                 cuit: '20-12345678-9',
@@ -167,7 +167,7 @@ describe('POST /api/posts', () => {
     it('should return an object with error message', (done) => {
         request(app)
             .post('/api/posts')
-            .auth('test@koibanx.com', 'admin')
+            .auth('test@koibanx.com', 'test123')
             .send({
                 name: '',
                 cuit: '20-12345678-9',
