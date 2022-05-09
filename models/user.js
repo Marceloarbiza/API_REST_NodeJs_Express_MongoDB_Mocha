@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
-let bcrypt = require('bcrypt-nodejs');
+//let bcrypt = require('bcrypt-nodejs');
+let bcrypt = require('bcrypt');
 
 let UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
@@ -28,5 +29,6 @@ UserSchema.pre('save', async function (callback) {
         });
     });
 });
+
 
 module.exports = mongoose.model('User', UserSchema);

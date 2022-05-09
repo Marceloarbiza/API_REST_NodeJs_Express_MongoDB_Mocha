@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
 const logger = require('./utils/logger');
-/*mongoose.Promise = Promise;*/
+mongoose.Promise = Promise;
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv');
 dotenv.config();
 const config = require('config');
-mongoose.connect(
+
+/*mongoose.connect(
     config.get('mongodb.db_connection'),
     { useNewUrlParser: true, useUnifiedTopology: true },
+    () => logger.info('Connected to MongoDB')
+);*/
+
+mongoose.connect(
+    config.get('mongodb.db_connection'), 
+    {useNewUrlParser: true, useUnifiedTopology: true},
     () => logger.info('Connected to MongoDB')
 );
 
@@ -19,7 +26,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 /*____*/
-/*require('./utils/initializer').init()*/
+require('./utils/initializer').init();
 
 app.use('/api', require('./routes/stores'));
 
@@ -34,7 +41,3 @@ module.exports = app
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-
-/* IMPORT ROUTES
-const stores = require('./routes/stores');
-app.use('/api/stores', stores);*/

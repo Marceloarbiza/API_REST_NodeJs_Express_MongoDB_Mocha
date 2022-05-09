@@ -7,9 +7,10 @@ exports.init = async function () {
     }
 
     let user = new User();
-    user.username = "test@koibanx.com";
+    user.username = "test2@koibanx.com";
     user.password = "admin";
     await User.create(user);
 
     logger.info("Test User created")
 }
+
