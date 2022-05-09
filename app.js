@@ -7,29 +7,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 const config = require('config');
 
-/*mongoose.connect(
-    config.get('mongodb.db_connection'),
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => logger.info('Connected to MongoDB')
-);*/
-
-mongoose.connect(
-    config.get('mongodb.db_connection'), 
-    {useNewUrlParser: true, useUnifiedTopology: true},
-    () => logger.info('Connected to MongoDB')
-);
+mongoose.connect('mongodb://' + config.get('mongodb.address') + '/' + config.get('mongodb.dbname'), { useNewUrlParser: true, useUnifiedTopology: true });
 
 const bodyParser = require('body-parser');
 
-/*mongoose.connect('mongodb://' + config.get('mongodb.address') + '/' + config.get('mongodb.dbname'), { useNewUrlParser: true, useUnifiedTopology: true });*/
-// MARCELO
 app.use(bodyParser.json());
 
-/*____*/
 require('./utils/initializer').init();
 
 app.use('/api', require('./routes/stores'));
-
 
 // Start the server
 app.listen(config.get('port'));
@@ -37,7 +23,7 @@ logger.info('API initialized on port ' + config.get('port'));
 
 module.exports = app
 
-// ROUTES
+// ROUTES INITIALIZATION
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('KOIBANX PROJECT');
 });
