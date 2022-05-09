@@ -2,12 +2,8 @@ const logger = require('../utils/logger');
 const express = require('express');
 const router = express.Router();
 const Store = require('../models/Store');
-//
 let bcrypt = require('bcrypt');
 const User = require('../models/user');
-//
-router.route('/stores')
-  .get(function(){logger.info("pending validations")}, function(){logger.info("pending use case")});
 
 
 // Function to change de currency format
@@ -46,7 +42,7 @@ const boolToString = (bool) => {
 }
 
 
-router.get('/posts', async (req, res) => {
+router.get('/stores', async (req, res) => {
   // Athentication
   const authorization = req.headers.authorization;
   if (!authorization) {
@@ -163,7 +159,7 @@ function seeders(length) {
   }
 };
 
-seeders(10);
+//seeders(10);
 
 
 module.exports = router;

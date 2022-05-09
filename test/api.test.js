@@ -16,37 +16,38 @@ describe('GET /', () => {
     });
 });
 
-//describe('GET /api/stores', () => {
-
-describe('GET /api/posts', () => {
-    // test login 
+// TEST GET /stores
+describe('GET /api/stores', () => {
+    // Test the root path
     it('should return 200 OK', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .auth('test@koibanx.com', 'admin')
             .expect(200, done);
     });
+    // Test the root path error
     it('should return 404 Not Found', (done) => {
         request(app)
             .get('/api/notfound')
             .expect(404, done);
     });
+    // Test the root path error
     it('should return 401 Unauthorized', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .expect(401, done);
     });
     // test type of response
     it('should return json', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .auth('test@koibanx.com', 'admin')
             .expect('Content-Type', /json/, done);
     });
     // test array response content and length
     it('should return an array', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .auth('test@koibanx.com', 'admin')
             // reponse length
             .expect((res) => {
@@ -58,7 +59,7 @@ describe('GET /api/posts', () => {
     // test pagination structure
     it('should return an object with pagination', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .auth('test@koibanx.com', 'admin')
             .expect((res) => {
                 expect(res.body).toBeObject();
@@ -73,7 +74,7 @@ describe('GET /api/posts', () => {
     // test send pagination url with query params
     it('should return an object with pagination', (done) => {
         request(app)
-            .get('/api/posts?limit=3&page=2')
+            .get('/api/stores?limit=3&page=2')
             .auth('test@koibanx.com', 'admin')
             .expect((res) => {
                 expect(res.body).toBeObject();
@@ -94,7 +95,7 @@ describe('GET /api/posts', () => {
     // test data content and structure
     it('should return an array of objects', (done) => {
         request(app)
-            .get('/api/posts')
+            .get('/api/stores')
             .auth('test@koibanx.com', 'admin')
             .expect((res) => {
                 expect(res.body[0]).toBeObject();
@@ -115,9 +116,9 @@ describe('GET /api/posts', () => {
     });
 });
 
-// test POST
+// test POST /posts
 describe('POST /api/posts', () => {
-    // test login
+    // test authentication
     it('should return 200 Created', (done) => {
         request(app)
             .post('/api/posts')
